@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 
 //configurações para o servidor
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ origin: 'https://rodrigowkp204.github.io' }));
 
 //rota para criar um item
 app.post("/user", async (req, res) => {
