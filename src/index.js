@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use(cors({ origin: 'https://rodrigowkp204.github.io' }));
 
 //rota para criar um item
-app.post("/item", async (req, res) => {
+app.post("/user", async (req, res) => {
   const dados = req.body;
-  await prisma.item.create({
+  await prisma.user.create({
     data: {
       nome: dados.nome,
     },
