@@ -10,12 +10,12 @@ const port = process.env.PORT || 5000;
 
 //configurações para o servidor
 app.use(bodyParser.json());
-app.use(cors({ origin: 'https://rodrigowkp204.github.io' }));
+app.use(cors());
 
 //rota para criar um item
-app.post("/user", async (req, res) => {
+app.post("/item", async (req, res) => {
   const dados = req.body;
-  await prisma.user.create({
+  await prisma.item.create({
     data: {
       nome: dados.nome,
     },
