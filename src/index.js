@@ -15,7 +15,7 @@ app.use(cors());
 //rota para criar um item
 app.post("/item", async (req, res) => {
   const dados = req.body;
-  await prisma.item.create({
+  await prisma.postgres.create({
     data: {
       nome: dados.nome,
     },
