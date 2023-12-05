@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //rota para criar um item
-app.post("/item", async (req, res) => {
+app.post("/user", async (req, res) => {
   const dados = req.body;
-  await prisma.users.create({
+  await prisma.user.create({
     data: {
       nome: dados.nome,
     },
@@ -25,10 +25,21 @@ app.post("/item", async (req, res) => {
 
 //rota para listar todos os usuários
 app.get("/users", async (req, res) => {
+  const users = await prisma.user.findMany();
+  if (users.length > 0) return res.status(200).send(users);
+  return res.status(404).send("No user found");
 });
 
 //rota para buscar um usuário pelo nome
-app.get("/user/:nome", async (req, res) => {
+app.get("/user/:name", async (req, res) => {
+  const name = req.params.name;
+  const user = await prisma.user.findMany({
+    where: {
+      nome: name,
+    },
+  });
+  if (user.length > 0) return res.status(200).send(user);
+  return res.send("No user found");
 });
 
 // Inicie o servidor na porta especificada
